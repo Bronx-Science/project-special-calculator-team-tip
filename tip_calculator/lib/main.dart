@@ -12,20 +12,26 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        home: Scaffold(
-            body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text('Welcome to Tip Calculator!'),
-          //Spacer(flex: 1),
-          MyForm()
-          //placeholder widget
-        ],
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Image.asset('assets/tip_logo.png', height: 80),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Welcome to Tip Calculator!',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const MyForm(),
+            ],
+          ),
+        ),
       ),
-    )));
+    );
   }
 }
 
@@ -148,9 +154,6 @@ class _MyFormState extends State<MyForm> {
                   // Process data.
                   calculateTotal();
                 }
-                print(bill);
-                print(tipPercent);
-                print(taxPercent);
               },
               child: const Text('Submit'),
             )),
