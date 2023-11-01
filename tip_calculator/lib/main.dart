@@ -15,6 +15,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 84, 203, 246),
           title: Image.asset('assets/tip_logo.png', height: 80),
         ),
         body: Center(
@@ -41,6 +42,7 @@ class MyForm extends StatefulWidget {
   const MyForm({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyFormState createState() => _MyFormState();
 }
 
@@ -115,9 +117,10 @@ class _MyFormState extends State<MyForm> {
                     fontSize: 20, height: 2, color: Colors.black),
                 validator: (String? value) {
                   //Check if Field is Blank
-                  if (value == null ||
-                      value.isEmpty ||
-                      double.tryParse(value) == null) {
+                  if (selection[3] == true &&
+                      (value == null ||
+                          value.isEmpty ||
+                          double.tryParse(value) == null)) {
                     return 'Please enter the tip';
                   }
                   return null;
