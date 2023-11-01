@@ -77,7 +77,8 @@ class _MyFormState extends State<MyForm> {
                       //Adds a Border
                       border: OutlineInputBorder()),
                   style: const TextStyle(
-                      fontSize: 20, height: 2, color: Colors.black),
+                      fontSize: 20, height: 1, color: Colors.black),
+                  textAlign: TextAlign.center,
                   validator: (String? value) {
                     //Check if Field is Blank
                     if (value == null ||
@@ -114,7 +115,8 @@ class _MyFormState extends State<MyForm> {
                     //Adds a Border
                     border: OutlineInputBorder()),
                 style: const TextStyle(
-                    fontSize: 20, height: 2, color: Colors.black),
+                    fontSize: 20, height: 1, color: Colors.black),
+                textAlign: TextAlign.center,
                 validator: (String? value) {
                   //Check if Field is Blank
                   if (selection[3] == true &&
@@ -137,6 +139,9 @@ class _MyFormState extends State<MyForm> {
                   decoration: const InputDecoration(
                       //Adds a Border
                       border: OutlineInputBorder()),
+                  style: const TextStyle(
+                      fontSize: 20, height: 1, color: Colors.black),
+                  textAlign: TextAlign.center,
                   validator: (String? value) {
                     //Check if Field is Blank
                     if (value == null ||
@@ -158,7 +163,7 @@ class _MyFormState extends State<MyForm> {
                   calculateTotal();
                 }
               },
-              child: const Text('Submit'),
+              child: const Text('Calculate Total'),
             )),
             if (total !=
                 '0.00') // Check if 'tip' is not '0.00' before displaying
@@ -166,7 +171,7 @@ class _MyFormState extends State<MyForm> {
                 padding: const EdgeInsets.all(20),
                 child: Text(
                   total, // Show the '$' symbol here
-                  style: const TextStyle(fontSize: 30),
+                  style: const TextStyle(fontSize: 35),
                 ),
               ),
           ],
