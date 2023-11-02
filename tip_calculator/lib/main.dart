@@ -76,7 +76,7 @@ class _MyFormState extends State<MyForm> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.only(top: 15),
               child: Text("Bill:", style: TextStyle(color: Colors.white)),
             ),
             SizedBox(
@@ -84,6 +84,9 @@ class _MyFormState extends State<MyForm> {
               height: 100,
               child: TextFormField(
                   decoration: const InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 84, 203, 246))),
                       fillColor: Color.fromARGB(255, 181, 224, 255),
                       //Adds a Border
                       border: OutlineInputBorder()),
@@ -111,10 +114,10 @@ class _MyFormState extends State<MyForm> {
             Padding(
               padding: const EdgeInsets.only(top: 3, bottom: 10),
               child: ToggleButtons(
-                borderColor: const Color.fromARGB(255, 111, 216, 253),
+                borderColor: const Color.fromARGB(255, 84, 203, 246),
                 fillColor: const Color.fromARGB(255, 84, 203, 246),
                 borderRadius: BorderRadius.circular(10),
-                selectedBorderColor: const Color.fromARGB(255, 111, 216, 253),
+                selectedBorderColor: const Color.fromARGB(255, 84, 203, 246),
                 isSelected: selection,
                 onPressed: updateSelection,
                 children: const [
@@ -134,6 +137,9 @@ class _MyFormState extends State<MyForm> {
               height: 100,
               child: TextFormField(
                 decoration: const InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 84, 203, 246))),
                     fillColor: Color.fromARGB(255, 181, 224, 255),
                     //Adds a Border
                     border: OutlineInputBorder()),
@@ -161,6 +167,9 @@ class _MyFormState extends State<MyForm> {
               height: 100,
               child: TextFormField(
                   decoration: const InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 84, 203, 246))),
                       fillColor: Color.fromARGB(255, 181, 224, 255),
                       //Adds a Border
                       border: OutlineInputBorder()),
