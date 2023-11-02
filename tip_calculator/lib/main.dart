@@ -14,20 +14,29 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: const Color.fromARGB(255, 4, 61, 102),
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 84, 203, 246),
-          title: Image.asset('assets/tip_logo.png', height: 80),
-        ),
-        body: Center(
+            backgroundColor: const Color.fromARGB(255, 3, 42, 87),
+            title: Center(
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Image.asset('assets/tip_logo.png', height: 80),
+              const Text("Calculator", style: TextStyle(fontSize: 50)),
+            ]))),
+        body: const Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 'Welcome to Tip Calculator!',
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight
+                        .bold), //Theme.of(context).textTheme.headlineSmall,
               ),
-              const MyForm(),
+              MyForm(),
             ],
           ),
         ),
@@ -55,7 +64,7 @@ class _MyFormState extends State<MyForm> {
       TextEditingController(); //Used to Retrive data inputted into text fields
   final tipController = TextEditingController();
   final taxController = TextEditingController();
-  List<bool> selection = [true, false, false, false];
+  List<bool> selection = [true, false, false, false, false];
   String total = '0.00';
 
   @override
@@ -68,16 +77,21 @@ class _MyFormState extends State<MyForm> {
           children: <Widget>[
             const Padding(
               padding: EdgeInsets.only(top: 10),
-              child: Text("Bill:"),
+              child: Text("Bill:", style: TextStyle(color: Colors.white)),
             ),
             SizedBox(
-              width: 200,
+              width: 250,
+              height: 100,
               child: TextFormField(
                   decoration: const InputDecoration(
+                      fillColor: Color.fromARGB(255, 181, 224, 255),
                       //Adds a Border
                       border: OutlineInputBorder()),
                   style: const TextStyle(
-                      fontSize: 20, height: 1, color: Colors.black),
+                    color: Colors.white,
+                    fontSize: 20,
+                    height: 1,
+                  ),
                   textAlign: TextAlign.center,
                   validator: (String? value) {
                     //Check if Field is Blank
@@ -92,7 +106,7 @@ class _MyFormState extends State<MyForm> {
             ),
             const Padding(
               padding: EdgeInsets.only(top: 10),
-              child: Text('Tip %'),
+              child: Text('Tip %', style: TextStyle(color: Colors.white)),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 3, bottom: 10),
@@ -100,26 +114,31 @@ class _MyFormState extends State<MyForm> {
                 isSelected: selection,
                 onPressed: updateSelection,
                 children: const [
-                  Text('10%'),
-                  Text('15%'),
-                  Text('20%'),
-                  Text('Custom')
+                  Text('10%', style: TextStyle(color: Colors.white)),
+                  Text('15%', style: TextStyle(color: Colors.white)),
+                  Text('20%', style: TextStyle(color: Colors.white)),
+                  Text('Chinese',
+                      style:
+                          TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
+                  Text('Custom', style: TextStyle(color: Colors.white)),
                 ],
               ),
             ),
-            const Text("Custom Tip %: "),
+            const Text("Custom Tip %: ", style: TextStyle(color: Colors.white)),
             SizedBox(
-              width: 200,
+              width: 250,
+              height: 100,
               child: TextFormField(
                 decoration: const InputDecoration(
+                    fillColor: Color.fromARGB(255, 181, 224, 255),
                     //Adds a Border
                     border: OutlineInputBorder()),
                 style: const TextStyle(
-                    fontSize: 20, height: 1, color: Colors.black),
+                    fontSize: 20, height: 1, color: Colors.white),
                 textAlign: TextAlign.center,
                 validator: (String? value) {
                   //Check if Field is Blank
-                  if (selection[3] == true &&
+                  if (selection[4] == true &&
                       (value == null ||
                           value.isEmpty ||
                           double.tryParse(value) == null)) {
@@ -132,15 +151,17 @@ class _MyFormState extends State<MyForm> {
             ),
             const Padding(
                 padding: EdgeInsetsDirectional.only(top: 10),
-                child: Text("Tax %: ")),
+                child: Text("Tax %: ", style: TextStyle(color: Colors.white))),
             SizedBox(
-              width: 200,
+              width: 250,
+              height: 100,
               child: TextFormField(
                   decoration: const InputDecoration(
+                      fillColor: Color.fromARGB(255, 181, 224, 255),
                       //Adds a Border
                       border: OutlineInputBorder()),
                   style: const TextStyle(
-                      fontSize: 20, height: 1, color: Colors.black),
+                      fontSize: 20, height: 1, color: Colors.white),
                   textAlign: TextAlign.center,
                   validator: (String? value) {
                     //Check if Field is Blank
@@ -163,7 +184,8 @@ class _MyFormState extends State<MyForm> {
                   calculateTotal();
                 }
               },
-              child: const Text('Calculate Total'),
+              child: const Text('Calculate Total',
+                  style: TextStyle(color: Colors.white)),
             )),
             if (total !=
                 '0.00') // Check if 'tip' is not '0.00' before displaying
@@ -171,7 +193,7 @@ class _MyFormState extends State<MyForm> {
                 padding: const EdgeInsets.all(20),
                 child: Text(
                   total, // Show the '$' symbol here
-                  style: const TextStyle(fontSize: 35),
+                  style: const TextStyle(fontSize: 35, color: Colors.white),
                 ),
               ),
           ],
@@ -189,18 +211,22 @@ class _MyFormState extends State<MyForm> {
   void calculateTotal() {
     final bill =
         double.parse(double.parse(billController.text).toStringAsPrecision(2));
-    if (selection[3] != false) {
+    final taxPercent = double.parse(
+        (double.parse(taxController.text) / 100).toStringAsPrecision(2));
+    String totalAmount = '';
+    if (selection[3]) {
+      totalAmount = ((bill * (1 + taxPercent)) + 2).toStringAsFixed(2);
+    } else if (selection[4]) {
       tipPercent = double.parse(
           (double.parse(tipController.text) / 100).toStringAsPrecision(2));
+      totalAmount =
+          (bill + (bill * tipPercent) + (bill * taxPercent)).toStringAsFixed(2);
     } else {
       final selectedIndex = selection.indexWhere((element) => element);
       tipPercent = [0.1, 0.15, 0.2][selectedIndex];
+      totalAmount =
+          (bill + (bill * tipPercent) + (bill * taxPercent)).toStringAsFixed(2);
     }
-    final taxPercent = double.parse(
-        (double.parse(taxController.text) / 100).toStringAsPrecision(2));
-
-    final totalAmount =
-        (bill + (bill * tipPercent) + (bill * taxPercent)).toStringAsFixed(2);
 
     setState(() {
       total = '\$$totalAmount';
