@@ -197,6 +197,8 @@ class _MyFormState extends State<MyForm> {
                   calculateTotal();
                 }
               },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 84, 203, 246)),
               child: const Text('Calculate Total',
                   style: TextStyle(color: Colors.white)),
             )),
