@@ -78,7 +78,8 @@ class _MyFormState extends State<MyForm> {
           children: <Widget>[
             const Padding(
               padding: EdgeInsets.only(top: 15),
-              child: Text("Bill:", style: TextStyle(color: Colors.white)),
+              child: Text("Bill:",
+                  style: TextStyle(color: Colors.white, fontSize: 17)),
             ),
             SizedBox(
               width: 250,
@@ -110,7 +111,8 @@ class _MyFormState extends State<MyForm> {
             ),
             const Padding(
               padding: EdgeInsets.only(top: 10),
-              child: Text('Tip %', style: TextStyle(color: Colors.white)),
+              child: Text('Tip %',
+                  style: TextStyle(color: Colors.white, fontSize: 17)),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 3, bottom: 10),
@@ -132,7 +134,8 @@ class _MyFormState extends State<MyForm> {
                 ],
               ),
             ),
-            const Text("Custom Tip %: ", style: TextStyle(color: Colors.white)),
+            const Text("Custom Tip %: ",
+                style: TextStyle(color: Colors.white, fontSize: 17)),
             SizedBox(
               width: 250,
               height: 100,
@@ -162,7 +165,8 @@ class _MyFormState extends State<MyForm> {
             ),
             const Padding(
                 padding: EdgeInsetsDirectional.only(top: 10),
-                child: Text("Tax %: ", style: TextStyle(color: Colors.white))),
+                child: Text("Tax %: ",
+                    style: TextStyle(color: Colors.white, fontSize: 17))),
             SizedBox(
               width: 250,
               height: 100,
