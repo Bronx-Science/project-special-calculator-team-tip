@@ -20,8 +20,8 @@ class _MyAppState extends State<MyApp> {
             title: Center(
                 child:
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Image.asset('assets/tip_logo.png', height: 80),
-              const Text("Calculator", style: TextStyle(fontSize: 50)),
+              Image.asset('assets/new_tip.png', height: 50),
+              //const Text("Calculator", style: TextStyle(fontSize: 50)),
             ]))),
         body: const Center(
           child: Column(
