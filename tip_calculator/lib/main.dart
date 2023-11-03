@@ -66,6 +66,7 @@ class _MyFormState extends State<MyForm> {
   final taxController = TextEditingController();
   List<bool> selection = [true, false, false, false, false];
   String total = '0.00';
+  String tip = '';
 
   @override
   Widget build(BuildContext context) {
@@ -206,9 +207,18 @@ class _MyFormState extends State<MyForm> {
                 '0.00') // Check if 'tip' is not '0.00' before displaying
               Padding(
                 padding: const EdgeInsets.all(20),
-                child: Text(
-                  total, // Show the '$' symbol here
-                  style: const TextStyle(fontSize: 35, color: Colors.white),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Tip: $tip',
+                      style: const TextStyle(fontSize: 35, color: Colors.white),
+                    ),
+                    Text(
+                      'Total: $total', // Show the '$' symbol here
+                      style: const TextStyle(fontSize: 35, color: Colors.white),
+                    )
+                  ],
                 ),
               ),
           ],
@@ -224,12 +234,14 @@ class _MyFormState extends State<MyForm> {
   }
 
   void calculateTotal() {
+    tipPercent = 0;
     final bill =
         double.parse(double.parse(billController.text).toStringAsPrecision(2));
     final taxPercent = double.parse(
         (double.parse(taxController.text) / 100).toStringAsPrecision(2));
     String totalAmount = '';
     if (selection[3]) {
+      tipPercent = 2;
       totalAmount = ((bill * (1 + taxPercent)) + 2).toStringAsFixed(2);
     } else if (selection[4]) {
       tipPercent = double.parse(
@@ -245,6 +257,11 @@ class _MyFormState extends State<MyForm> {
 
     setState(() {
       total = '\$$totalAmount';
+      if (tipPercent == 2) {
+        tip = '\$${(tipPercent).toStringAsFixed(2)}';
+      } else {
+        tip = '\$${(tipPercent * bill).toStringAsFixed(2)}';
+      }
     });
   }
 }
